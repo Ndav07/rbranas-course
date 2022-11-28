@@ -1,0 +1,27 @@
+{
+  "name": "rbranas-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc:init": "tsc --init",
+    "build": "tsc",
+    "test": "tsc && jest dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ndav07/rbranas-course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ndav07/rbranas-course/issues"
+  },
+  "homepage": "https://github.com/Ndav07/rbranas-course#readme",
+  "devDependencies": {
+    "@types/jest": "^29.2.3",
+    "jest": "^29.3.1",
+    "typescript": "^4.9.3"
+  }
+}
