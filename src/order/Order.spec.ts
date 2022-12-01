@@ -37,16 +37,15 @@ describe('Test Order', () => {
     expect(total).toBe(128)
   })
 
-  /*
-  it('should create a order with 3 items and discount coupon expirado', () => {
+  
+  it('should create a order with 3 items and a discount coupon expirado', () => {
     const cpf = '839.435.452-10'
-    const order = new Order(cpf)
+    const order = new Order(cpf, new Date('2022-12-10'))
     order.addItem(new Item(1, 'Música', 'CD', 30), 3)
     order.addItem(new Item(2, 'Vídeo', 'DVD', 50), 1)
     order.addItem(new Item(3, 'Vídeo', 'VHS', 10), 2)
-    order.addCoupon(new Coupon('VALE20', 20))
+    order.addCoupon(new Coupon('VALE20', 20, new Date('2022-12-01')))
     const total = order.getTotal()
     expect(total).toBe(160)
   })
-  */
 })
