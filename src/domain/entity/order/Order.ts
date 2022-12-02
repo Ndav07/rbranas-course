@@ -1,9 +1,9 @@
-import ValidateCPF from '../validationCPF/Validate-cpf'
+import ValidateCPF from './Validate-cpf'
 import Item from './Item'
 import OrderItem from './Order-item'
 import Coupon from './Coupon'
-import FreightCalculator from './FreightCalculator'
-import DefaultFreightCalculator from './DefaultFreightCalculator'
+import FreightCalculator from './Freight-calculator'
+import DefaultFreightCalculator from './Default-freight-calculator'
 
 export default class Order {
   cpf: ValidateCPF
@@ -11,7 +11,11 @@ export default class Order {
   private coupon: Coupon | undefined
   private freight: number
 
-  constructor(cpf: string, readonly date: Date = new Date(), readonly freightCalculator: FreightCalculator = new DefaultFreightCalculator()) {
+  constructor(
+    cpf: string, 
+    readonly date: Date = new Date(), 
+    readonly freightCalculator: FreightCalculator = new DefaultFreightCalculator()
+    ) {
     this.cpf = new ValidateCPF(cpf)
     this.orderItems = []
     this.freight = 0
@@ -40,6 +44,7 @@ export default class Order {
     if(this.coupon) {
       total -= this.coupon.calculateDiscount(total, this.date)
     }
+    total += this.getFreight()
     return total
   }
 }

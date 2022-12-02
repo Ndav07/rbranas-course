@@ -1,8 +1,8 @@
-import Order from './Order'
-import Item from './Item'
-import Coupon from './Coupon'
-import DefaultFreightCalculator from './DefaultFreightCalculator'
-import FixedFreightCalculator from './FixedFreightCalculator'
+import Order from '../../src/domain/entity/order/Order'
+import Item from '../../src/domain/entity/order/Item'
+import Coupon from '../../src/domain/entity/order/Coupon'
+import DefaultFreightCalculator from '../../src/domain/entity/order/Default-freight-calculator'
+import FixedFreightCalculator from '../../src/domain/entity/order/Fixed-freight-calculator'
 
 describe('Test Order', () => {
   

@@ -1,4 +1,4 @@
-import FreightCalculator from "./FreightCalculator"
+import FreightCalculator from "./Freight-calculator"
 import Item from "./Item"
 
 export default class DefaultFreightCalculator implements FreightCalculator {

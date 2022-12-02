@@ -28,8 +28,8 @@ export default class ValidateCPF {
     return cpf.length === 11
   }
 
-  private isBlocked(cpf: string){
-    const [firstDigit] = cpf
+  private isBlocked(cpf: string): boolean {
+    const [firstDigit] = cpf 
     return [...cpf].every(digit => digit === firstDigit)
   }
 
