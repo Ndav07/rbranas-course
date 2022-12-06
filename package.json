@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "tsc && jest dist/",
+    "test": "tsc && jest dist/ --forceExit",
     "test:coverage": "tsc && jest --coverage dist/"
   },
   "repository": {
@@ -23,5 +23,8 @@
     "@types/jest": "^29.2.3",
     "jest": "^29.3.1",
     "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "pg-promise": "^10.15.4"
   }
 }

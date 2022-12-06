@@ -8,13 +8,13 @@ export default class Item {
     readonly height: number = 0,
     readonly length: number = 0,
     readonly weight: number = 0
-    ) {}
+  ) {}
 
-    getVolume(): number {
-      return (this.width/100 * this.height/100 * this.length/100)
-    }
+  getVolume(): number {
+    return (this.width/100 * this.height/100 * this.length/100)
+  }
 
-    getDensity(): number {
-      return this.weight/this.getVolume()
-    }
+  getDensity(): number {
+    return this.weight/this.getVolume()
+  }
 }

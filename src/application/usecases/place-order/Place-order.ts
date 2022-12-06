@@ -1,7 +1,8 @@
-import Order from "../../domain/entity/order/Order";
-import CouponRepository from "../../domain/repository/Coupon-repository";
-import ItemRepository from "../../domain/repository/Item-repository";
-import OrderRepository from "../../domain/repository/Order-repository";
+import DefaultFreightCalculator from "../../../domain/entity/Default-freight-calculator";
+import Order from "../../../domain/entity/order/Order";
+import CouponRepository from "../../../domain/repository/Coupon-repository";
+import ItemRepository from "../../../domain/repository/Item-repository";
+import OrderRepository from "../../../domain/repository/Order-repository";
 import PlaceOrderInput from "./Place-order-input";
 import PlaceOrderOutput from "./Place-order-output";
 
@@ -14,7 +15,8 @@ export default class PlaceOrder {
   ) { }
 
   async execute(input: PlaceOrderInput): Promise<PlaceOrderOutput> {
-    const order = new Order(input.cpf, input.date)
+    const sequence = await this.orderRepository.count() + 1
+    const order = new Order(input.cpf, input.date, new DefaultFreightCalculator(), sequence)
     for(const orderItem of input.orderItems) {
       const item = await this.itemRepository.findByid(orderItem.idItem)
       if(!item) throw new Error('Item not found')
@@ -26,7 +28,7 @@ export default class PlaceOrder {
     }
     await this.orderRepository.save(order)
     const total = order.getTotal()
-    const output = new PlaceOrderOutput(total)
+    const output = new PlaceOrderOutput(order.getCode(), total)
     return output
   }
 }

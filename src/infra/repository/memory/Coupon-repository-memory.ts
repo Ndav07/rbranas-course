@@ -1,4 +1,4 @@
-import Coupon from "../../../domain/entity/order/Coupon";
+import Coupon from "../../../domain/entity/Coupon";
 import CouponRepository from "../../../domain/repository/Coupon-repository";
 
 export default class CouponRepositoryMemory implements CouponRepository {

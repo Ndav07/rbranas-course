@@ -1,8 +1,8 @@
 import Order from '../../src/domain/entity/order/Order'
-import Item from '../../src/domain/entity/order/Item'
-import Coupon from '../../src/domain/entity/order/Coupon'
-import DefaultFreightCalculator from '../../src/domain/entity/order/Default-freight-calculator'
-import FixedFreightCalculator from '../../src/domain/entity/order/Fixed-freight-calculator'
+import Item from '../../src/domain/entity/Item'
+import Coupon from '../../src/domain/entity/Coupon'
+import DefaultFreightCalculator from '../../src/domain/entity/Default-freight-calculator'
+import FixedFreightCalculator from '../../src/domain/entity/Fixed-freight-calculator'
 
 describe('Test Order', () => {
   
@@ -69,5 +69,15 @@ describe('Test Order', () => {
     order.addItem(new Item(6, 'Accessories', 'Cable', 30, 10, 10, 10, 0.9), 3)
     const freight = order.getFreight()
     expect(freight).toBe(50)
+  })
+
+  it('should create a order with code', () => {
+    const cpf = '839.435.452-10'
+    const order = new Order(cpf, new Date('2022-10-14'), new FixedFreightCalculator())
+    order.addItem(new Item(4, 'Musical Instruments', 'Guitar', 1000, 100, 30, 10, 3), 1)
+    order.addItem(new Item(5, 'Musical Instruments', 'Amplifier', 5000, 100, 50, 50, 20), 1)
+    order.addItem(new Item(6, 'Accessories', 'Cable', 30, 10, 10, 10, 0.9), 3)
+    const code =  order.getCode()
+    expect(code).toBe('202200000001')
   })
 })
