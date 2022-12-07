@@ -6,7 +6,7 @@ export default class Coupon {
     readonly expireDate?: Date
   ) {}
   
-  isValid(today: Date): boolean {
+  isValid(today: Date = new Date()): boolean {
     if(!this.expireDate) return true
     return this.expireDate.getTime() >= today.getTime()
   }

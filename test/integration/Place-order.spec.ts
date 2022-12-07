@@ -8,10 +8,6 @@ import CouponRepositoryDatabase from "../../src/infra/repository/database/Coupon
 import OrderRepositoryDatabase from "../../src/infra/repository/database/Order-repository-database"
 import ItemRepositoryDatabase from "../../src/infra/repository/database/Item-repository-database"
 
-import CouponRepositoryMemory from "../../src/infra/repository/memory/Coupon-repository-memory"
-import OrderRepositoryMemory from "../../src/infra/repository/memory/Order-repository-memory"
-import ItemRepositoryMemory from "../../src/infra/repository/memory/Item-repository-memory"
-
 describe('Test PlaceOrder', () => {
   let itemRepository: ItemRepository
   let couponRepository: CouponRepository
@@ -20,7 +16,7 @@ describe('Test PlaceOrder', () => {
   let connection: Connection
 
   beforeEach(() => {
-    connection = new PgPromiseConnectionAdpter()
+    connection = PgPromiseConnectionAdpter.getInstance()
     itemRepository = new ItemRepositoryDatabase(connection)
     couponRepository = new CouponRepositoryDatabase(connection)
     orderRepository = new OrderRepositoryDatabase(connection)

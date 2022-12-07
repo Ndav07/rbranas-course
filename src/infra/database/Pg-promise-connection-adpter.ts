@@ -3,9 +3,17 @@ import pqg from 'pg-promise'
 
 export default class PgPromiseConnectionAdpter implements Connection {
   pgp: any
+  static instace: PgPromiseConnectionAdpter
 
-  constructor() {
+  private constructor() {
     this.pgp = pqg()('postgres://postgres:123456@localhost:5432/app')
+  }
+
+  static getInstance() {
+    if(!PgPromiseConnectionAdpter.instace) {
+      PgPromiseConnectionAdpter.instace = new PgPromiseConnectionAdpter()
+    }
+    return PgPromiseConnectionAdpter.instace
   }
 
   async query(statement: string, params: any[]): Promise<any> {

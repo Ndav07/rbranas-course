@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "tsc && jest dist/ --forceExit",
+    "test": "tsc && jest dist/",
     "test:coverage": "tsc && jest --coverage dist/"
   },
   "repository": {
