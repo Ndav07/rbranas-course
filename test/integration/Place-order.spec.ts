@@ -1,34 +1,23 @@
 import PlaceOrder from "../../src/application/usecases/place-order/Place-order"
-import CouponRepository from "../../src/domain/repository/Coupon-repository"
-import ItemRepository from "../../src/domain/repository/Item-repository"
-import OrderRepository from "../../src/domain/repository/Order-repository"
 import Connection from "../../src/infra/database/Connection"
 import PgPromiseConnectionAdpter from "../../src/infra/database/Pg-promise-connection-adpter"
-import CouponRepositoryDatabase from "../../src/infra/repository/database/Coupon-repository-database"
-import OrderRepositoryDatabase from "../../src/infra/repository/database/Order-repository-database"
-import ItemRepositoryDatabase from "../../src/infra/repository/database/Item-repository-database"
+import RepositoryFactory from "../../src/domain/factory/Repository-factory"
+import DatabaseRepositoryFactory from "../../src/infra/factory/Database-repository-factory"
+import MemoryRepositoryFactory from "../../src/infra/factory/Memory-repository-factory"
 
 describe('Test PlaceOrder', () => {
-  let itemRepository: ItemRepository
-  let couponRepository: CouponRepository
-  let orderRepository: OrderRepository
   let placeOrder: PlaceOrder
   let connection: Connection
+  let repositoryFactory: RepositoryFactory
 
   beforeEach(() => {
     connection = PgPromiseConnectionAdpter.getInstance()
-    itemRepository = new ItemRepositoryDatabase(connection)
-    couponRepository = new CouponRepositoryDatabase(connection)
-    orderRepository = new OrderRepositoryDatabase(connection)
-    placeOrder = new PlaceOrder(
-      itemRepository, 
-      orderRepository,
-      couponRepository
-    )
+    repositoryFactory = new DatabaseRepositoryFactory(connection)
+    placeOrder = new PlaceOrder(repositoryFactory)
   })
 
   afterEach(async () => {
-    await orderRepository.clear()
+    await repositoryFactory.createOrderRepository().clear()
   })
 
   it('should place an order', async () => {
