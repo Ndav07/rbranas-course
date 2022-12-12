@@ -5,7 +5,7 @@ export default class ExpressAdapter implements Http {
   app: any
 
   constructor() {
-    this.app = express
+    this.app = express()
     this.app.use(express.json())
   }
 
