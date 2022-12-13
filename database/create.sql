@@ -36,8 +36,11 @@ create table ccca.order (
   issue_date timestamp,
   freight numeric,
   sequence integer,
+  total numeric,
   primary key (id_order)
 )
+
+alter table ccca.order add column total numeric
 
 create table ccca.order_item (
   id_order integer,
