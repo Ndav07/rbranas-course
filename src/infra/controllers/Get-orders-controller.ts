@@ -1,12 +1,13 @@
-import GetOrders from "../../application/usecases/get-orders/Get-orders";
+import OrderDAO from "../../application/dao/OrderDAO";
+import GetOrders from "../../application/query/get-orders/GetOrders";
 import GetOrdersOutput from "../../application/usecases/get-orders/Get-orders-output";
-import RepositoryFactory from "../../domain/factory/Repository-factory";
+import Connection from "../database/Connection";
 
 export default class GetOrdersController {
-  constructor(readonly repositoryFactory: RepositoryFactory) {}
+  constructor(readonly orderDAO: OrderDAO) {}
 
   async execute(params: null, body: null): Promise<GetOrdersOutput> {
-    const getOders = new GetOrders(this.repositoryFactory)
+    const getOders = new GetOrders(this.orderDAO)
     return await getOders.execute()
   }
 }
