@@ -1,5 +1,5 @@
 import SimulateFreight from "../../../src/application/usecases/simulate-freight/Simulate-freight"
-import DefaultFreightCalculator from "../../../src/domain/entity/Default-freight-calculator"
+import DefaultFreightCalculator from "../../../src/domain/service/freight/Default-freight-calculator"
 import PgPromiseConnectionAdpter from "../../../src/infra/database/Pg-promise-connection-adpter"
 import DatabaseRepositoryFactory from "../../../src/infra/factory/Database-repository-factory"
 

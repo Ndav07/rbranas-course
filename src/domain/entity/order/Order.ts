@@ -1,9 +1,9 @@
-import ValidateCPF from '../Validate-cpf'
+import ValidateCPF from '../../service/Validate-cpf'
 import Item from '../Item'
 import OrderItem from './Order-item'
 import Coupon from '../Coupon'
-import FreightCalculator from '../Freight-calculator'
-import DefaultFreightCalculator from '../Default-freight-calculator'
+import FreightCalculator from '../../service/freight/Freight-calculator'
+import DefaultFreightCalculator from '../../service/freight/Default-freight-calculator'
 import OrderCode from './Order-code'
 
 export default class Order {

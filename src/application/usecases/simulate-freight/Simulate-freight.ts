@@ -1,4 +1,4 @@
-import FreightCalculator from "../../../domain/entity/Freight-calculator";
+import FreightCalculator from "../../../domain/service/freight/Freight-calculator";
 import RepositoryFactory from "../../../domain/factory/Repository-factory";
 import ItemRepository from "../../../domain/repository/Item-repository";
 import SimulateFreightInput from "./Simulate-freight-input";

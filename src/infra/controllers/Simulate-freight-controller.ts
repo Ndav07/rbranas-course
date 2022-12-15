@@ -1,6 +1,6 @@
 import SimulateFreight from "../../application/usecases/simulate-freight/Simulate-freight";
 import SimulateFreightOutput from "../../application/usecases/simulate-freight/Simulate-freight-output";
-import FreightCalculator from "../../domain/entity/Freight-calculator";
+import FreightCalculator from "../../domain/service/freight/Freight-calculator";
 import RepositoryFactory from "../../domain/factory/Repository-factory";
 
 export default class SimulateFreightController {

@@ -4,7 +4,7 @@ import RepositoryFactory from "../../domain/factory/Repository-factory";
 import GetOrdersController from "../controllers/Get-orders-controller";
 import GetOrderController from "../controllers/Get-order-controller";
 import SimulateFreightController from "../controllers/Simulate-freight-controller";
-import DefaultFreightCalculator from "../../domain/entity/Default-freight-calculator";
+import DefaultFreightCalculator from "../../domain/service/freight/Default-freight-calculator";
 import ValidateCouponController from "../controllers/Validate-coupon-controller";
 import OrderDAO from "../../application/dao/OrderDAO";
 

@@ -1,5 +1,5 @@
 import Coupon from "../../../domain/entity/Coupon";
-import DefaultFreightCalculator from "../../../domain/entity/Default-freight-calculator";
+import DefaultFreightCalculator from "../../../domain/service/freight/Default-freight-calculator";
 import Item from "../../../domain/entity/Item";
 import Order from "../../../domain/entity/order/Order";
 import OrderRepository from "../../../domain/repository/Order-repository";

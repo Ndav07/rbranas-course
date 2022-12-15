@@ -1,4 +1,4 @@
-import ValidateCPF from '../../../src/domain/entity/Validate-cpf'
+import ValidateCPF from '../../../src/domain/service/Validate-cpf'
  
 describe('Validation CPF', () => {
 
