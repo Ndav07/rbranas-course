@@ -1,4 +1,4 @@
-import OrderItem from "../../src/domain/entity/order/Order-item"
+import OrderItem from "../../../src/domain/entity/order/Order-item"
 
 describe('Test OrderItem', () => {
   it('should create a item of order', () => {

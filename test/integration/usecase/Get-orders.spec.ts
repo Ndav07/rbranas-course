@@ -1,9 +1,9 @@
-import PlaceOrder from "../../src/application/usecases/place-order/Place-order"
-import Connection from "../../src/infra/database/Connection"
-import PgPromiseConnectionAdpter from "../../src/infra/database/Pg-promise-connection-adpter"
-import RepositoryFactory from "../../src/domain/factory/Repository-factory"
-import DatabaseRepositoryFactory from "../../src/infra/factory/Database-repository-factory"
-import GetOrders from "../../src/application/usecases/get-orders/Get-orders"
+import PlaceOrder from "../../../src/application/usecases/place-order/Place-order"
+import Connection from "../../../src/infra/database/Connection"
+import PgPromiseConnectionAdpter from "../../../src/infra/database/Pg-promise-connection-adpter"
+import RepositoryFactory from "../../../src/domain/factory/Repository-factory"
+import DatabaseRepositoryFactory from "../../../src/infra/factory/Database-repository-factory"
+import GetOrders from "../../../src/application/usecases/get-orders/Get-orders"
 
 describe('Test GetOrders', () => {
   let placeOrder: PlaceOrder

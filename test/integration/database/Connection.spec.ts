@@ -1,4 +1,4 @@
-import PgPromiseConnectionAdpter from "../../src/infra/database/Pg-promise-connection-adpter"
+import PgPromiseConnectionAdpter from "../../../src/infra/database/Pg-promise-connection-adpter"
 
 describe('Test connection data base', () => {
   it('should create a connection with data base', async () => {

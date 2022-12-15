@@ -1,8 +1,8 @@
-import Order from '../../src/domain/entity/order/Order'
-import Item from '../../src/domain/entity/Item'
-import Coupon from '../../src/domain/entity/Coupon'
-import DefaultFreightCalculator from '../../src/domain/entity/Default-freight-calculator'
-import FixedFreightCalculator from '../../src/domain/entity/Fixed-freight-calculator'
+import Order from '../../../src/domain/entity/order/Order'
+import Item from '../../../src/domain/entity/Item'
+import Coupon from '../../../src/domain/entity/Coupon'
+import DefaultFreightCalculator from '../../../src/domain/entity/Default-freight-calculator'
+import FixedFreightCalculator from '../../../src/domain/entity/Fixed-freight-calculator'
 
 describe('Test Order', () => {
   
