@@ -1,6 +1,4 @@
 import PlaceOrder from "../../../src/application/usecases/place-order/Place-order"
-import Connection from "../../../src/infra/database/Connection"
-import PgPromiseConnectionAdpter from "../../../src/infra/database/Pg-promise-connection-adpter"
 import RepositoryFactory from "../../../src/domain/factory/Repository-factory"
 import DatabaseRepositoryFactory from "../../../src/infra/factory/Database-repository-factory"
 import GetOrders from "../../../src/application/usecases/get-orders/Get-orders"
@@ -8,12 +6,10 @@ import GetOrders from "../../../src/application/usecases/get-orders/Get-orders"
 describe('Test GetOrders', () => {
   let placeOrder: PlaceOrder
   let getOrders: GetOrders
-  let connection: Connection
   let repositoryFactory: RepositoryFactory
 
   beforeEach(() => {
-    connection = PgPromiseConnectionAdpter.getInstance()
-    repositoryFactory = new DatabaseRepositoryFactory(connection)
+    repositoryFactory = new DatabaseRepositoryFactory()
     placeOrder = new PlaceOrder(repositoryFactory)
     getOrders = new GetOrders(repositoryFactory)
   })

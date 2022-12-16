@@ -1,22 +1,25 @@
+import GetStock from "../../../src/application/usecases/get-stock/Get-stock"
 import PlaceOrder from "../../../src/application/usecases/place-order/Place-order"
-import Connection from "../../../src/infra/database/Connection"
-import PgPromiseConnectionAdpter from "../../../src/infra/database/Pg-promise-connection-adpter"
 import RepositoryFactory from "../../../src/domain/factory/Repository-factory"
+import StockEntryRepository from "../../../src/domain/repository/Stock-entry-repository"
 import DatabaseRepositoryFactory from "../../../src/infra/factory/Database-repository-factory"
 
 describe('Test PlaceOrder', () => {
   let placeOrder: PlaceOrder
-  let connection: Connection
   let repositoryFactory: RepositoryFactory
+  let stockEntryRepository: StockEntryRepository
+  let getStock: GetStock
 
   beforeEach(() => {
-    connection = PgPromiseConnectionAdpter.getInstance()
-    repositoryFactory = new DatabaseRepositoryFactory(connection)
+    repositoryFactory = new DatabaseRepositoryFactory()
     placeOrder = new PlaceOrder(repositoryFactory)
+    stockEntryRepository = repositoryFactory.createStockEntryRepository()
+    getStock = new GetStock(repositoryFactory)
   })
 
   afterEach(async () => {
     await repositoryFactory.createOrderRepository().clear()
+    await stockEntryRepository.clear()
   })
 
   it('should place an order', async () => {
@@ -60,5 +63,24 @@ describe('Test PlaceOrder', () => {
     }
     const output = await placeOrder.execute(input)
     expect(output.code).toBe('202200000001')
+  })
+
+  it('should place an order and remove of stock', async () => {
+    const input = {
+      cpf: '839.435-452-10',
+      orderItems: [
+        { idItem: 4, quantity: 1 },
+        { idItem: 5, quantity: 1 },
+        { idItem: 6, quantity: 3 },
+      ],
+      date: new Date('2022-12-10')
+    }
+    await placeOrder.execute(input)
+    const totala = await getStock.execute(4)
+    const totalb = await getStock.execute(5)
+    const totalc = await getStock.execute(6)
+    expect(totala).toBe(-1)
+    expect(totalb).toBe(-1)
+    expect(totalc).toBe(-3)
   })
 })

@@ -7,7 +7,7 @@ import RouteConfig from './infra/http/Rounte-config'
 const expressAdapter = new ExpressAdapter()
 
 const connection = PgPromiseConnectionAdpter.getInstance()
-const repositoryFactory = new DatabaseRepositoryFactory(connection)
+const repositoryFactory = new DatabaseRepositoryFactory()
 const orderDAO = new OrderDAODatabase(connection)
 
 new RouteConfig(expressAdapter, repositoryFactory, orderDAO)

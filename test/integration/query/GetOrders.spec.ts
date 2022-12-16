@@ -16,7 +16,7 @@ describe('Test query GetOrders', () => {
 
   beforeEach(() => {
     connection = PgPromiseConnectionAdpter.getInstance()
-    repositoryFactory = new DatabaseRepositoryFactory(connection)
+    repositoryFactory = new DatabaseRepositoryFactory()
     placeOrder = new PlaceOrder(repositoryFactory)
     orderDAO = new OrderDAODatabase(connection)
     getOrders = new GetOrders(orderDAO)

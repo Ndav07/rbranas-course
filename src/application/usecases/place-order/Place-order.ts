@@ -7,6 +7,7 @@ import OrderRepository from "../../../domain/repository/Order-repository";
 import PlaceOrderInput from "./Place-order-input";
 import PlaceOrderOutput from "./Place-order-output";
 import StockEntry from "../../../domain/entity/Stock-entry";
+import StockEntryRepository from "../../../domain/repository/Stock-entry-repository";
 
 export default class PlaceOrder {
   itemRepository: ItemRepository
@@ -34,11 +35,9 @@ export default class PlaceOrder {
       if(coupon) order.addCoupon(coupon)
     }
     await this.orderRepository.save(order)
-
     for(const orderItem of input.orderItems) {
-      this.stockEntryRepository.save(new StockEntry(orderItem.idItem), 'out', orderItem.quantity, order.date)
+      this.stockEntryRepository.save(new StockEntry(orderItem.idItem, 'out', orderItem.quantity, order.date))
     }
-    
     const total = order.getTotal()
     const output = new PlaceOrderOutput(order.getCode(), total)
     return output
