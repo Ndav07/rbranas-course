@@ -2,6 +2,7 @@ import PlaceOrder from "../../../src/application/usecases/place-order/Place-orde
 import RepositoryFactory from "../../../src/domain/factory/Repository-factory"
 import DatabaseRepositoryFactory from "../../../src/infra/factory/Database-repository-factory"
 import GetOrders from "../../../src/application/usecases/get-orders/Get-orders"
+import Broker from "../../../src/infra/broker/Broker"
 
 describe('Test GetOrders', () => {
   let placeOrder: PlaceOrder
@@ -10,7 +11,8 @@ describe('Test GetOrders', () => {
 
   beforeEach(() => {
     repositoryFactory = new DatabaseRepositoryFactory()
-    placeOrder = new PlaceOrder(repositoryFactory)
+    const broker = new Broker()
+    placeOrder = new PlaceOrder(repositoryFactory, broker)
     getOrders = new GetOrders(repositoryFactory)
   })
 

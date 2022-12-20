@@ -1,7 +1,9 @@
+import OrderPlacedStockHandler from "../../../src/application/handler/Order-placed-stock-handler"
 import GetStock from "../../../src/application/usecases/get-stock/Get-stock"
 import PlaceOrder from "../../../src/application/usecases/place-order/Place-order"
 import RepositoryFactory from "../../../src/domain/factory/Repository-factory"
 import StockEntryRepository from "../../../src/domain/repository/Stock-entry-repository"
+import Broker from "../../../src/infra/broker/Broker"
 import DatabaseRepositoryFactory from "../../../src/infra/factory/Database-repository-factory"
 
 describe('Test PlaceOrder', () => {
@@ -12,7 +14,9 @@ describe('Test PlaceOrder', () => {
 
   beforeEach(() => {
     repositoryFactory = new DatabaseRepositoryFactory()
-    placeOrder = new PlaceOrder(repositoryFactory)
+    const broker = new Broker()
+    broker.register(new OrderPlacedStockHandler(repositoryFactory))
+    placeOrder = new PlaceOrder(repositoryFactory, broker)
     stockEntryRepository = repositoryFactory.createStockEntryRepository()
     getStock = new GetStock(repositoryFactory)
   })

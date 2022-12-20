@@ -6,6 +6,7 @@ import DatabaseRepositoryFactory from "../../../src/infra/factory/Database-repos
 import GetOrders from "../../../src/application/query/get-orders/GetOrders"
 import OrderDAO from "../../../src/application/dao/OrderDAO"
 import OrderDAODatabase from "../../../src/infra/dao/OrderDAODatabase"
+import Broker from "../../../src/infra/broker/Broker"
 
 describe('Test query GetOrders', () => {
   let placeOrder: PlaceOrder
@@ -17,7 +18,8 @@ describe('Test query GetOrders', () => {
   beforeEach(() => {
     connection = PgPromiseConnectionAdpter.getInstance()
     repositoryFactory = new DatabaseRepositoryFactory()
-    placeOrder = new PlaceOrder(repositoryFactory)
+    const broker = new Broker()
+    placeOrder = new PlaceOrder(repositoryFactory, broker)
     orderDAO = new OrderDAODatabase(connection)
     getOrders = new GetOrders(orderDAO)
   })

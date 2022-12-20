@@ -7,11 +7,12 @@ import SimulateFreightController from "../controllers/Simulate-freight-controlle
 import DefaultFreightCalculator from "../../domain/service/freight/Default-freight-calculator";
 import ValidateCouponController from "../controllers/Validate-coupon-controller";
 import OrderDAO from "../../application/dao/OrderDAO";
+import Broker from "../broker/Broker";
 
 export default class RouteConfig {
-  constructor(http: Http, repositoryFactory: RepositoryFactory, orderDAO: OrderDAO) {
+  constructor(http: Http, repositoryFactory: RepositoryFactory, orderDAO: OrderDAO, broker: Broker) {
     http.on('/orders', 'post', async (params: any, body: any) => {
-      const placeOrderController = new PlaceOrderController(repositoryFactory)
+      const placeOrderController = new PlaceOrderController(repositoryFactory, broker)
       return placeOrderController.execute(params, body)
     })
 
